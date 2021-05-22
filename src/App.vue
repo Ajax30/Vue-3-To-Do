@@ -7,7 +7,7 @@
 
     <List 
       :todos="todos"
-      dataIsLoaded=false 
+      :dataIsLoaded="dataIsLoaded" 
       @delete-todo="deleteTodo" 
       @toggle-todo="toggleTodo" />
 
@@ -52,7 +52,8 @@ export default {
         this.todos = response.data;
       })
      .then(this.getUnsolvedTodos);
-      this.dataIsLoaded = true;
+
+    this.dataIsLoaded = true;
   },
 
   methods: {
