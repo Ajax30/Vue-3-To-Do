@@ -2,12 +2,12 @@
   <div id="app">
     <Header 
     title="My todo list" 
-    :unsolvedTodos = []
+    :unsolvedTodos = unsolvedTodos
     />
 
     <List 
       :todos="todos"
-      :dataIsLoaded="dataIsLoaded" 
+      :dataIsLoaded=dataIsLoaded
       @delete-todo="deleteTodo" 
       @toggle-todo="toggleTodo" />
 
