@@ -12,9 +12,9 @@
       @toggle-todo="toggleTodo" />
 
     <Footer
-      :isValidInput = true
+      :isValidInput=isValidInput
       newTitle = ""
-      placeholder="+ Add new todo"
+      placeholder= "+ Add new todo"
       validationMsg = "Please add at least 3 characters"
       @add-todo="addTodo"
       />
@@ -51,9 +51,8 @@ export default {
       .then((response) => {
         this.todos = response.data;
       })
-     .then(this.getUnsolvedTodos);
-
-    this.dataIsLoaded = true;
+     .then(this.getUnsolvedTodos)
+     .then(this.dataIsLoaded = true);
   },
 
   methods: {
@@ -90,10 +89,6 @@ export default {
       
       this.getUnsolvedTodos();
     }
-  },
-
-  watch: {
-    
   }
 }
 
