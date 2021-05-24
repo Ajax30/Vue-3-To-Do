@@ -3,7 +3,7 @@
     <input type="checkbox" :checked="todo.completed" @change="$emit('toggle-todo', todo)" />
     <span class="title">{{todo.title}}</span>
     <button @click="$emit('delete-todo', todo.id)">
-      <i class="fa fa-trash" aria-hidden="true"></i>
+      <i class="fas fa-trash-alt"></i>
     </button>
  </li>
 </template>
