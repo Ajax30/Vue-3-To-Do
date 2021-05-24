@@ -2,7 +2,7 @@
   <transition-group name="list" tag="ul" class="todo-list" v-if=dataIsLoaded>
       <TodoItem v-for="(todo, index) in todos.slice().reverse()"
         :key="todo.id" 
-        :class="{done: todo.completed, active: index == 0}" 
+        :class="{done: todo.completed, current: index == 0}" 
         :todo="todo" 
         @delete-todo="$emit('delete-todo', todo.id)"
         @toggle-todo="$emit('toggle-todo', todo)"

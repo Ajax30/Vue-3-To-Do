@@ -39,11 +39,13 @@ export default {
     margin-bottom: 0;
   }
 
-  .list-enter-active, .list-leave-active {
+  .current.list-enter-active,
+  .current.list-leave-active {
     transition: all .5s;
   }
 
-  .list-enter, .list-leave-to {
+  .current.list-enter,
+  .current.list-leave-to {
     opacity: 0;
     transform: translateX(-295px);
   }
