@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import '@fortawesome/fontawesome-free/js/all.js';
 import axios from 'axios'
+import '@fortawesome/fontawesome-free/js/all.js';
 import Header from './components/Header.vue'
 import List from './components/List.vue'
 import Footer from './components/Footer.vue'

@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <form @submit.prevent="$emit('add-todo', newTitle)">
+    <form @submit.prevent="addTodo()">
       <input type="text" :placeholder="placeholder" v-model="newTitle">
       <span class="error" v-if="!isValidInput">{{validationMsg}}</span>
     </form>
@@ -14,8 +14,20 @@ export default {
   props: {
     placeholder: String,
     validationMsg: String,
-		newTitle: String,
     isValidInput: Boolean
+  },
+
+  data () {
+    return {
+     newTitle: '',
+    }
+  },
+
+  methods: {
+    addTodo() {
+      this.$emit('add-todo', this.newTitle)
+      this.newTitle = ''
+    }
   }
 }
 </script>
