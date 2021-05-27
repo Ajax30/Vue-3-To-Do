@@ -1,6 +1,6 @@
 <template>
   <li>
-    <input type="checkbox" :checked="todo.completed" @change="$emit('toggle-todo', todo)" />
+    <input type="checkbox" :checked="Boolean(Number(todo.completed))" @change="$emit('toggle-todo', todo)" />
     <span class="title">{{todo.title}}</span>
     <button @click="$emit('delete-todo', todo.id)">
       <i class="fas fa-trash-alt"></i>

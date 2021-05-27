@@ -39,7 +39,7 @@ export default {
 
   data() {
     return {
-      url: "https://jsonplaceholder.typicode.com/todos?&_limit=5",
+      apiUrl: "http://todo.com/api",
       dataIsLoaded: false,
       isValidInput: true,
       todos: [],
@@ -47,48 +47,56 @@ export default {
     }
   },
 
-  mounted() {
-    axios.get(this.url)
+  methods: {
+    showTodos: function(){
+      axios.get(`${this.apiUrl}/todos`)
       .then((response) => {
         this.todos = response.data;
       })
      .then(this.getUnsolvedTodos)
      .then(this.dataIsLoaded = true);
-  },
+    },
 
-  methods: {
     getUnsolvedTodos: function(){
       this.unsolvedTodos = this.todos.filter(todo => {
-        return todo.completed === false;
+        return todo.completed == 0;
       });
     },
 
     toggleTodo: function(todo) {
-      todo.completed = !todo.completed;
-      this.getUnsolvedTodos();
+      let newStatus = todo.completed == "0" ? 1 : 0;
+      axios.put(`${this.apiUrl}/todo/update/${todo.id}`, {
+        title: todo.title,
+        completed: newStatus
+      })
     },
 
     deleteTodo: function(id) {
-      this.todos = this.todos.filter(todo => todo.id !== id);
-      this.getUnsolvedTodos();
+      axios.delete(`${this.apiUrl}/todo/delete/${id}`)
     },
 
     addTodo: function(newTitle){
-     let lastId = this.todos.length === 0 ? 0 : this.todos[this.todos.length - 1].id;
      const newToDo = {
-        id: lastId + 1,
         title: newTitle,
-        completed: false
+        completed: 0
       }
      
       if(newTitle.length > 2){
         this.isValidInput = true;
-        this.todos.push(newToDo);
+        axios.post(`${this.apiUrl}/todo/add`, newToDo);
       } else {
         this.isValidInput = false;
       }
-      
-      this.getUnsolvedTodos();
+    }
+  },
+
+  created() {
+    this.showTodos();
+  },
+
+  watch: {
+    todos() {
+      this.showTodos();
     }
   }
 }
