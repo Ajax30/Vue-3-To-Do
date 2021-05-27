@@ -1,6 +1,6 @@
 <template>
   <transition-group name="list" tag="ul" class="todo-list" v-if=dataIsLoaded>
-      <TodoItem v-for="(todo, index) in todos.slice().reverse()"
+      <TodoItem v-for="(todo, index) in todos"
         :key="todo.id" 
         :class="{done: Boolean(Number(todo.completed)), current: index == 0}" 
         :todo="todo" 
